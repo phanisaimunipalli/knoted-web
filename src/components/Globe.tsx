@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Sphere, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -20,7 +20,7 @@ function Earth() {
 
   // Grid lines (wireframe globe)
   const gridLines = useMemo(() => {
-    const lines: JSX.Element[] = [];
+    const lines: React.ReactElement[] = [];
     // Latitude lines
     for (let i = -60; i <= 60; i += 30) {
       const phi = (90 - i) * (Math.PI / 180);
@@ -35,11 +35,8 @@ function Earth() {
         ));
       }
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      lines.push(
-        <line key={`lat-${i}`} geometry={geometry}>
-          <lineBasicMaterial color="#3B82F6" opacity={0.12} transparent />
-        </line>
-      );
+      const material = new THREE.LineBasicMaterial({ color: "#3B82F6", opacity: 0.12, transparent: true });
+      lines.push(<primitive key={`lat-${i}`} object={new THREE.Line(geometry, material)} />);
     }
     // Longitude lines
     for (let i = 0; i < 360; i += 30) {
@@ -55,11 +52,8 @@ function Earth() {
         ));
       }
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      lines.push(
-        <line key={`lon-${i}`} geometry={geometry}>
-          <lineBasicMaterial color="#3B82F6" opacity={0.08} transparent />
-        </line>
-      );
+      const material = new THREE.LineBasicMaterial({ color: "#3B82F6", opacity: 0.08, transparent: true });
+      lines.push(<primitive key={`lon-${i}`} object={new THREE.Line(geometry, material)} />);
     }
     return lines;
   }, []);
