@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import Image from "next/image";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
@@ -42,7 +41,6 @@ function Nav() {
           <a href="/#features" className="px-3 py-1.5 text-[13px] rounded-lg transition-colors" style={{ color: "var(--text-secondary)" }}>Features</a>
           <a href="/#how-it-works" className="px-3 py-1.5 text-[13px] rounded-lg transition-colors" style={{ color: "var(--text-secondary)" }}>How it works</a>
           <a href="/support" className="px-3 py-1.5 text-[13px] rounded-lg transition-colors" style={{ color: "var(--text-secondary)" }}>Support</a>
-          <ThemeToggle />
           <a
             href="https://apps.apple.com/app/knoted"
             className="ml-2 px-4 py-1.5 text-[13px] font-semibold rounded-lg transition-colors"

@@ -1,39 +1,19 @@
 @import "tailwindcss";
 
-/* ── Theme variables ─────────────────────────────────────── */
+/* ── Cosmic black palette ────────────────────────────────── */
 :root {
-  /* Dark (default) */
-  --bg-page:       #0A1628;
-  --bg-card:       #0F1D32;
-  --bg-card-hover: #112238;
-  --border-card:   rgba(255,255,255,0.08);
-  --border-hover:  rgba(255,255,255,0.14);
-  --text-primary:  #f1f5f9;
-  --text-secondary:#94a3b8;
-  --text-muted:    #64748b;
-  --text-xmuted:   #475569;
-  --shadow-card:   0 4px 30px rgba(0,0,0,0.25);
-  --nav-bg:        rgba(15,29,50,0.90);
-  --orb1:          rgba(37,99,235,0.06);
-  --orb2:          rgba(8,145,178,0.04);
-  --scroll-thumb:  rgba(255,255,255,0.08);
-}
-
-:root[data-theme="light"] {
-  --bg-page:       #f1f5fb;
-  --bg-card:       #ffffff;
-  --bg-card-hover: #f8faff;
-  --border-card:   rgba(0,0,0,0.07);
-  --border-hover:  rgba(0,0,0,0.13);
-  --text-primary:  #0f172a;
-  --text-secondary:#475569;
-  --text-muted:    #94a3b8;
-  --text-xmuted:   #cbd5e1;
-  --shadow-card:   0 4px 24px rgba(0,0,0,0.06);
-  --nav-bg:        rgba(255,255,255,0.88);
-  --orb1:          rgba(37,99,235,0.05);
-  --orb2:          rgba(8,145,178,0.03);
-  --scroll-thumb:  rgba(0,0,0,0.10);
+  --bg-page:       #08080f;
+  --bg-card:       #0f0f1e;
+  --bg-card-hover: #141428;
+  --border-card:   rgba(255,255,255,0.07);
+  --border-hover:  rgba(255,255,255,0.12);
+  --text-primary:  #f0f0ff;
+  --text-secondary:#8b8ba8;
+  --text-muted:    #55556a;
+  --text-xmuted:   #3a3a50;
+  --shadow-card:   0 4px 40px rgba(0,0,0,0.5);
+  --nav-bg:        rgba(8,8,15,0.85);
+  --scroll-thumb:  rgba(255,255,255,0.07);
 }
 
 /* ── Base ────────────────────────────────────────────────── */
@@ -44,10 +24,9 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* ── Shared card classes ──────────────────────────────────── */
+/* ── Cards ───────────────────────────────────────────────── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -73,16 +52,15 @@ body {
   border: 1px solid var(--border-card);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-/* ── Orb bg ──────────────────────────────────────────────── */
-.orb1 { background: var(--orb1); }
-.orb2 { background: var(--orb2); }
+/* ── Nebula orbs ─────────────────────────────────────────── */
+.orb1 { background: radial-gradient(ellipse, rgba(88,50,255,0.10) 0%, transparent 70%); }
+.orb2 { background: radial-gradient(ellipse, rgba(30,80,255,0.07) 0%, transparent 70%); }
 
 /* ── Gradient text ───────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #60A5FA 0%, #34D399 60%, #818CF8 100%);
+  background: linear-gradient(135deg, #818CF8 0%, #60A5FA 45%, #34D399 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -97,16 +75,15 @@ body {
 
 /* ── Phone glow ─────────────────────────────────────────── */
 .phone-glow {
-  filter: drop-shadow(0 0 80px rgba(59,130,246,0.12)) drop-shadow(0 20px 60px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 0 60px rgba(100,80,255,0.15)) drop-shadow(0 24px 60px rgba(0,0,0,0.6));
 }
 
-/* ── Globe hero radial fade ──────────────────────────────── */
+/* ── Globe radial fade ───────────────────────────────────── */
 .bg-radial-fade {
   background: radial-gradient(ellipse 65% 65% at 50% 50%, transparent 20%, var(--bg-page) 75%);
-  transition: background 0.3s ease;
 }
 
-/* ── Legal pages ─────────────────────────────────────────── */
+/* ── Legal ───────────────────────────────────────────────── */
 .legal-content h2 {
   font-size: 1.25rem;
   font-weight: 600;
@@ -130,29 +107,10 @@ body {
 }
 .legal-content strong { color: var(--text-primary); }
 .legal-content ul { padding-left: 1.5rem; list-style: disc; }
-.legal-content a { color: #60a5fa; }
+.legal-content a { color: #818cf8; }
 .legal-content a:hover { text-decoration: underline; }
-
-/* ── Light theme: override Tailwind dark-hardcoded classes ── */
-/* Hero text must stay white — it floats over the globe */
-:root[data-theme="light"] .text-white:not(.hero-always-white) { color: var(--text-primary) !important; }
-:root[data-theme="light"] .text-slate-400      { color: var(--text-secondary) !important; }
-:root[data-theme="light"] .text-slate-500      { color: var(--text-muted) !important; }
-:root[data-theme="light"] .text-slate-600      { color: var(--text-muted) !important; }
-:root[data-theme="light"] .text-slate-300      { color: var(--text-secondary) !important; }
-:root[data-theme="light"] .bg-\[#0F1D32\]      { background: var(--bg-card) !important; }
-:root[data-theme="light"] .bg-\[#0A0F1A\]      { background: var(--bg-page) !important; }
-:root[data-theme="light"] .border-white\/\[0\.08\] { border-color: var(--border-card) !important; }
-:root[data-theme="light"] .divide-white\/\[0\.06\] > * { border-color: var(--border-card) !important; }
-:root[data-theme="light"] .border-t            { border-color: var(--border-card) !important; }
-:root[data-theme="light"] .phone-glow {
-  filter: drop-shadow(0 0 60px rgba(59,130,246,0.10)) drop-shadow(0 20px 40px rgba(0,0,0,0.12));
-}
 
 /* ── Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: var(--scroll-thumb);
-  border-radius: 3px;
-}
+::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 3px; }
