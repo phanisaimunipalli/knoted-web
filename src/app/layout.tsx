@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
@@ -33,7 +34,7 @@ function Nav() {
     <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4">
       <nav className="mx-auto max-w-5xl flex items-center justify-between bg-[#0F1D32]/90 border border-white/[0.08] rounded-2xl px-5 py-3 backdrop-blur-2xl">
         <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-emerald-400 grid place-items-center text-white text-xs font-bold">K</div>
+          <Image src="/icon.png" alt="Knoted" width={32} height={32} className="rounded-xl" />
           <span className="text-white font-semibold tracking-tight">Knoted</span>
         </a>
         <div className="flex items-center gap-1">
@@ -54,7 +55,7 @@ function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-emerald-400 grid place-items-center text-white text-xs font-bold">K</div>
+              <Image src="/icon.png" alt="Knoted" width={32} height={32} className="rounded-xl" />
               <span className="text-white font-semibold">Knoted</span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed max-w-[240px]">Local tips from people who were actually there. GPS-pinned. Presence-verified.</p>

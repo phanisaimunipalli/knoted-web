@@ -36,6 +36,15 @@ body {
 .legal-content a { color: #60a5fa; }
 .legal-content a:hover { text-decoration: underline; }
 
+/* Globe hero radial fade — blends 3D globe into page bg */
+.bg-radial-fade {
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, transparent 30%, #0A1628 75%);
+}
+
+/* Legal sub-headings */
+.legal-content h3 { font-size: 1.05rem; font-weight: 600; color: #e2e8f0; margin-top: 1.75rem; margin-bottom: 0.5rem; }
+.legal-content strong { color: #e2e8f0; }
+
 /* scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
