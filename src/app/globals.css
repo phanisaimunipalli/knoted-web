@@ -134,7 +134,8 @@ body {
 .legal-content a:hover { text-decoration: underline; }
 
 /* ── Light theme: override Tailwind dark-hardcoded classes ── */
-:root[data-theme="light"] .text-white          { color: var(--text-primary) !important; }
+/* Hero text must stay white — it floats over the globe */
+:root[data-theme="light"] .text-white:not(.hero-always-white) { color: var(--text-primary) !important; }
 :root[data-theme="light"] .text-slate-400      { color: var(--text-secondary) !important; }
 :root[data-theme="light"] .text-slate-500      { color: var(--text-muted) !important; }
 :root[data-theme="light"] .text-slate-600      { color: var(--text-muted) !important; }

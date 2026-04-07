@@ -42,17 +42,18 @@ function GlobeHero() {
           <div className="absolute inset-0 bg-radial-fade pointer-events-none" />
         </motion.div>
 
-        {/* Overlay text */}
-        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        {/* Overlay text — always white regardless of theme, sits over globe */}
+        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto hero-always-white">
           <motion.div style={{ y: taglineY }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.3, ease }}
-              className={`inline-flex items-center gap-2 ${card} !rounded-full px-4 py-2 mb-8`}
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8"
+              style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(12px)" }}
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[13px] font-medium" style={{ color: "var(--text-secondary)" }}>Now on the App Store</span>
+              <span className="text-[13px] font-medium text-white/80">Now on the App Store</span>
             </motion.div>
           </motion.div>
 
@@ -66,8 +67,7 @@ function GlobeHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0, ease }}
-              className="text-[clamp(1rem,2vw,1.2rem)] leading-relaxed mb-10 max-w-xl mx-auto"
-              style={{ color: "var(--text-secondary)" }}
+              className="text-[clamp(1rem,2vw,1.2rem)] leading-relaxed mb-10 max-w-xl mx-auto text-white/70"
             >
               GPS-pinned tips from real people. Presence-verified. No accounts. Just the city, and what it knows.
             </motion.p>
@@ -84,7 +84,7 @@ function GlobeHero() {
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 Download for iOS
               </a>
-              <a href="#how-it-works" className="text-slate-400 hover:text-white text-[15px] font-medium transition-colors flex items-center gap-1.5">
+              <a href="#how-it-works" className="text-white/60 hover:text-white text-[15px] font-medium transition-colors flex items-center gap-1.5">
                 See how it works
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
               </a>
@@ -137,7 +137,7 @@ function StatsBar() {
   );
 }
 
-/* ─── Feature Scroll — Apple sticky reveal ─────────────── */
+/* ─── Features — static grid ────────────────────────────── */
 const features = [
   { icon: "📍", title: "GPS-Pinned", desc: "Every tip is locked to the exact spot. Not a neighborhood. Not a zip code. The actual coordinates.", color: "#3B82F6" },
   { icon: "🚶", title: "Presence-Gated", desc: "You have to physically walk there to vote. 100 meters or less. No remote opinions.", color: "#22C55E" },
@@ -148,84 +148,75 @@ const features = [
 ];
 
 function FeatureSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-
   return (
-    <section id="features" ref={containerRef} className="relative z-10" style={{ height: `${features.length * 60 + 100}vh` }}>
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="mx-auto max-w-5xl px-6 w-full">
-          {/* Header */}
-          <FadeUp>
-            <p className="text-[12px] text-blue-400 font-semibold uppercase tracking-[0.2em] mb-2 text-center">Features</p>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.75rem] font-bold text-white text-center mb-14 leading-tight">
-              What makes it different
-            </h2>
-          </FadeUp>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {features.map((f, i) => (
-              <FeatureCard key={i} feature={f} index={i} scrollYProgress={scrollYProgress} total={features.length} />
-            ))}
-          </div>
+    <section id="features" className="relative z-10 py-24 md:py-32">
+      <div className="mx-auto max-w-5xl px-6">
+        <FadeUp>
+          <p className="text-[12px] text-blue-400 font-semibold uppercase tracking-[0.2em] mb-3 text-center">Features</p>
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.75rem] font-bold text-center mb-4 leading-tight" style={{ color: "var(--text-primary)" }}>
+            What makes it different
+          </h2>
+          <p className="text-center max-w-md mx-auto mb-14 text-[15px] leading-relaxed" style={{ color: "var(--text-muted)" }}>
+            Google Maps shows you where. Knoted shows you what people who stood there actually know.
+          </p>
+        </FadeUp>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((f, i) => (
+            <ScaleIn key={i} delay={i * 0.05}>
+              <div className={`${cardHover} p-7 h-full`}>
+                <div className="w-10 h-10 rounded-xl grid place-items-center text-lg mb-5" style={{ background: `${f.color}20` }}>{f.icon}</div>
+                <h3 className="text-[15px] font-semibold mb-2" style={{ color: "var(--text-primary)" }}>{f.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{f.desc}</p>
+              </div>
+            </ScaleIn>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function FeatureCard({ feature: f, index, scrollYProgress, total }: {
-  feature: typeof features[0];
-  index: number;
-  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
-  total: number;
-}) {
-  const start = index / (total + 1);
-  const end = start + 1 / (total + 1);
-  const opacity = useTransform(scrollYProgress, [start, start + 0.04, end - 0.04, end], [0, 1, 1, 0.4]);
-  const y = useTransform(scrollYProgress, [start, start + 0.05], [40, 0]);
-  const scale = useTransform(scrollYProgress, [start, start + 0.05], [0.94, 1]);
-
-  return (
-    <motion.div style={{ opacity, y, scale }} className={`${cardHover} p-7 h-full`}>
-      <div className="w-10 h-10 rounded-xl grid place-items-center text-lg mb-5" style={{ background: `${f.color}20` }}>{f.icon}</div>
-      <h3 className="text-[15px] font-semibold text-white mb-2">{f.title}</h3>
-      <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
-    </motion.div>
-  );
-}
-
 /* ─── App Showcase ──────────────────────────────────────── */
 function ShowcaseSection() {
+  const screens = [
+    { src: "/mockups/drop-dark.png",     alt: "Drop a Knot",   label: "Drop a tip",         sublabel: "140 chars. Tagged. Done." },
+    { src: "/mockups/map-dark.png",      alt: "Map view",      label: "Explore the map",    sublabel: "See what's around you."  },
+    { src: "/mockups/detail-warning.png", alt: "Knot detail",  label: "Confirm from the spot", sublabel: "Be there to believe it." },
+  ];
+
   return (
     <section className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <FadeUp>
           <p className="text-[12px] text-emerald-400 font-semibold uppercase tracking-[0.2em] mb-3 text-center">The experience</p>
-          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.75rem] font-bold text-white text-center mb-4 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.75rem] font-bold text-center mb-4 leading-tight" style={{ color: "var(--text-primary)" }}>
             Drop. Discover. Confirm.
           </h2>
           <p className="text-center max-w-md mx-auto mb-16 text-[15px] leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            Three screens. Zero friction. Here is what using Knoted actually feels like.
+            Three screens. Zero friction.
           </p>
         </FadeUp>
 
-        <FadeUp delay={0.1}>
-          <div className="flex justify-center items-end gap-4 md:gap-8">
-            <div className="hidden md:block phone-glow opacity-70 hover:opacity-100 transition-opacity duration-500">
-              <Image src="/mockups/drop-dark.png" alt="Drop a Knot" width={200} height={409} className="h-auto" />
-              <p className="text-center text-[11px] text-slate-500 mt-3 font-medium">Drop a tip</p>
-            </div>
-            <div className="phone-glow">
-              <Image src="/mockups/map-dark.png" alt="Map view" width={260} height={531} className="h-auto" />
-              <p className="text-center text-[11px] text-slate-500 mt-3 font-medium">Explore the map</p>
-            </div>
-            <div className="hidden md:block phone-glow opacity-70 hover:opacity-100 transition-opacity duration-500">
-              <Image src="/mockups/detail-warning.png" alt="Warning detail" width={200} height={409} className="h-auto" />
-              <p className="text-center text-[11px] mt-3 font-medium" style={{ color: "var(--text-muted)" }}>Confirm from the spot</p>
-            </div>
-          </div>
-        </FadeUp>
+        {/* Three phones — equal weight, center slightly taller */}
+        <div className="flex justify-center items-end gap-5 md:gap-10">
+          {screens.map((s, i) => (
+            <FadeUp key={i} delay={i * 0.1}>
+              <div className="flex flex-col items-center">
+                <div className="phone-glow">
+                  <Image
+                    src={s.src}
+                    alt={s.alt}
+                    width={i === 1 ? 240 : 200}
+                    height={i === 1 ? 490 : 409}
+                    className="h-auto rounded-[2rem] shadow-2xl"
+                  />
+                </div>
+                <p className="text-center text-[13px] font-semibold mt-4 mb-0.5" style={{ color: "var(--text-primary)" }}>{s.label}</p>
+                <p className="text-center text-[11px]" style={{ color: "var(--text-muted)" }}>{s.sublabel}</p>
+              </div>
+            </FadeUp>
+          ))}
+        </div>
       </div>
     </section>
   );
