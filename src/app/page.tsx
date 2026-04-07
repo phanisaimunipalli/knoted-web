@@ -9,8 +9,8 @@ import { FadeUp, ScaleIn, WordReveal } from "@/components/ScrollReveal";
 const Globe = dynamic(() => import("@/components/Globe"), { ssr: false });
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const card = "bg-[#0F1D32] border border-white/[0.08] rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.25)]";
-const cardHover = `${card} transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.14]`;
+const card = "card";
+const cardHover = "card-hover";
 
 /* ─── Globe Hero ─────────────────────────────────────────── */
 function GlobeHero() {
@@ -52,7 +52,7 @@ function GlobeHero() {
               className={`inline-flex items-center gap-2 ${card} !rounded-full px-4 py-2 mb-8`}
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[13px] text-slate-400 font-medium">Now on the App Store</span>
+              <span className="text-[13px] font-medium" style={{ color: "var(--text-secondary)" }}>Now on the App Store</span>
             </motion.div>
           </motion.div>
 
@@ -66,9 +66,10 @@ function GlobeHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.0, ease }}
-              className="text-[clamp(1rem,2vw,1.2rem)] text-slate-400 leading-relaxed mb-10 max-w-xl mx-auto"
+              className="text-[clamp(1rem,2vw,1.2rem)] leading-relaxed mb-10 max-w-xl mx-auto"
+              style={{ color: "var(--text-secondary)" }}
             >
-              GPS-pinned tips from real people. Presence-verified. No accounts. Just the street, and you.
+              GPS-pinned tips from real people. Presence-verified. No accounts. Just the city, and what it knows.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -99,7 +100,7 @@ function GlobeHero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
         >
-          <span className="text-[11px] text-slate-600 uppercase tracking-widest font-medium">Scroll</span>
+          <span className="text-[11px] uppercase tracking-widest font-medium" style={{ color: "var(--text-xmuted)" }}>Scroll</span>
           <motion.div
             className="w-px h-10 bg-gradient-to-b from-slate-600 to-transparent"
             animate={{ scaleY: [1, 0.3, 1], opacity: [0.5, 1, 0.5] }}
@@ -204,8 +205,8 @@ function ShowcaseSection() {
           <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.75rem] font-bold text-white text-center mb-4 leading-tight">
             Drop. Discover. Confirm.
           </h2>
-          <p className="text-slate-500 text-center max-w-md mx-auto mb-16 text-[15px] leading-relaxed">
-            Three screens. Zero friction. Here is what Knoted looks like.
+          <p className="text-center max-w-md mx-auto mb-16 text-[15px] leading-relaxed" style={{ color: "var(--text-muted)" }}>
+            Three screens. Zero friction. Here is what using Knoted actually feels like.
           </p>
         </FadeUp>
 
@@ -221,7 +222,7 @@ function ShowcaseSection() {
             </div>
             <div className="hidden md:block phone-glow opacity-70 hover:opacity-100 transition-opacity duration-500">
               <Image src="/mockups/detail-warning.png" alt="Warning detail" width={200} height={409} className="h-auto" />
-              <p className="text-center text-[11px] text-slate-500 mt-3 font-medium">Confirm with your feet</p>
+              <p className="text-center text-[11px] mt-3 font-medium" style={{ color: "var(--text-muted)" }}>Confirm from the spot</p>
             </div>
           </div>
         </FadeUp>
@@ -235,7 +236,7 @@ function HowItWorks() {
   const steps = [
     { n: "01", t: "Drop a tip", d: "See something worth sharing? Tap drop, write 140 characters, tag it, done. Your GPS locks it to the exact spot.", c: "#3B82F6", icon: "📍" },
     { n: "02", t: "Walk and discover", d: "Tips appear on the map as you move. Parking tricks, food spots, shortcuts. All left by people who stood right where you are.", c: "#22C55E", icon: "🗺️" },
-    { n: "03", t: "Vote with your feet", d: "Walk to a tip and confirm it is still true. Or flag it as outdated. You have to be there. That is what makes it honest.", c: "#F59E0B", icon: "✅" },
+    { n: "03", t: "Be there to believe it", d: "Walk to the spot and confirm the tip is still accurate. Or mark it outdated. Presence is the only proof that counts.", c: "#F59E0B", icon: "✅" },
   ];
 
   return (
